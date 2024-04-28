@@ -10,6 +10,7 @@
       directories = [
         "/etc/nixos"
 	"/etc/NetworkManager/system-connections"
+	"/var/lib/waydroid"
       ];
       files = [
         "/etc/machine-id"
@@ -26,6 +27,7 @@
 	  ".config/sops/age"
 	  ".config/heroic"
 	  ".config/discordWebConfig"
+	  ".config/YTMusicWebConfig"
 	  ".1password"
 	  ".ssh"
 	  ".local/share/PrismLauncher"
@@ -36,23 +38,22 @@
 	  ".icons"
 	  "data/Pictures/memes"
 	  "data/Pictures/screenshots"
-	  "data/Pictures/wallpapers"
 	  "data/Pictures/other"
-	  "data/Videos"
 	  "data/music"
 	  "data/recordings"
 	  "data/Games/OMORI"
+	  "data/Games/The Song of Saya"
 	  "data/Games/Heroic"
-	  "data/Documents/obsidian"
-	  "data/Documents/pdf"
-	  "data/Documents/nixpkgs"
-	  "data/Documents/dolis"
-	  "data/Documents/misc"
+	  "data/Documents"
 	  "data/Documents/cooklang"
+	  "data/Videos/Replays"
+	  "data/Videos/Captures"
 	  "data/Videos/mpv_clips"
+	  "data/Videos/webtorrent"
 	];
 	files = [
           ".config/mpv/memo-history.log"
+	  ".config/gpu-screen-recorder/config"
 #	  ".config/sops/age/keys.txt"
 	];
       };

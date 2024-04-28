@@ -1,61 +1,68 @@
 { config, ... }: let 
-  homeDirectory = "${config.home.homeDirectory}";
+  homeDir = "${config.home.homeDirectory}";
 in {
   config = {
     home.file."1" = {
       enable = true;
-      source = config.lib.file.mkOutOfStoreSymlink "${homeDirectory}/data/Pictures/memes";
-      target = "${homeDirectory}/1";
+      source = config.lib.file.mkOutOfStoreSymlink "${homeDir}/data/Pictures/memes";
+      target = "${homeDir}/1";
     };
     home.file."1-0" = {
       enable = true;
-      source = config.lib.file.mkOutOfStoreSymlink "${homeDirectory}/data/Pictures/memes";
-      target = "${homeDirectory}/data/1";
+      source = config.lib.file.mkOutOfStoreSymlink "${homeDir}/data/Pictures/memes";
+      target = "${homeDir}/data/1";
     };
     home.file."memes" = {
       enable = true;
-      source = config.lib.file.mkOutOfStoreSymlink "${homeDirectory}/data/Pictures/memes";
-      target = "${homeDirectory}/data/Videos/memes";
+      source = config.lib.file.mkOutOfStoreSymlink "${homeDir}/data/Pictures/memes";
+      target = "${homeDir}/data/Videos/memes";
     };
     home.file."Videos" = {
       enable = true;
-      source = config.lib.file.mkOutOfStoreSymlink "${homeDirectory}/data/Videos";
-      target = "${homeDirectory}/Videos";
+      source = config.lib.file.mkOutOfStoreSymlink "${homeDir}/data/Videos";
+      target = "${homeDir}/Videos";
     };
     home.file."Pictures" = {
       enable = true;
-      source = config.lib.file.mkOutOfStoreSymlink "${homeDirectory}/data/Pictures";
-      target = "${homeDirectory}/Pictures";
+      source = config.lib.file.mkOutOfStoreSymlink "${homeDir}/data/Pictures";
+      target = "${homeDir}/Pictures";
     };
     home.file."Games" = {
       enable = true;
-      source = config.lib.file.mkOutOfStoreSymlink "${homeDirectory}/data/Games";
-      target = "${homeDirectory}/Games";
+      source = config.lib.file.mkOutOfStoreSymlink "${homeDir}/data/Games";
+      target = "${homeDir}/Games";
     };
     home.file."games" = {
       enable = true;
-      source = config.lib.file.mkOutOfStoreSymlink "${homeDirectory}/data/Games";
-      target = "${homeDirectory}/games";
+      source = config.lib.file.mkOutOfStoreSymlink "${homeDir}/data/Games";
+      target = "${homeDir}/games";
     };
     home.file."Downloads" = {
       enable = true;
       source = config.lib.file.mkOutOfStoreSymlink "/tmp";
-      target = "${homeDirectory}/Downloads";
+      target = "${homeDir}/Downloads";
     };
     home.file."noita_gifs" = {
       enable = true;
-      source = config.lib.file.mkOutOfStoreSymlink "${homeDirectory}/.local/share/Steam/steamapps/compatdata/881100/pfx/dosdevices/c:/users/steamuser/AppData/LocalLow/Nolla_Games_Noita/save_rec/screenshots_animated/";
-      target = "${homeDirectory}/data/Videos/noita_gifs";
+      source = config.lib.file.mkOutOfStoreSymlink "${homeDir}/.local/share/Steam/steamapps/compatdata/881100/pfx/dosdevices/c:/users/steamuser/AppData/LocalLow/Nolla_Games_Noita/save_rec/screenshots_animated/";
+      target = "${homeDir}/data/Videos/noita_gifs";
     };
     home.file."wallpapers" = {
-      enable = false;
+      enable = true;
       source = config.lib.file.mkOutOfStoreSymlink "./applications/prism/wallpapers";
-      target = "${homeDirectory}/data/Pictures/wallpapers";
+      target = "${homeDir}/data/Pictures/wallpapers";
     };
     home.file."music" = {
       enable = false;
-      source = config.lib.file.mkOutOfStoreSymlink "${homeDirectory}/data/music";
-      target = "${homeDirectory}/music";
+      source = config.lib.file.mkOutOfStoreSymlink "${homeDir}/data/music";
+      target = "${homeDir}/music";
+    };
+
+    # Chrome Permission bypass for Downloads Router extension
+    home.file."mew" = {
+      enable = true;
+      source = config.lib.file.mkOutOfStoreSymlink "${homeDir}";
+      target = "/tmp";
     };
   };
 }

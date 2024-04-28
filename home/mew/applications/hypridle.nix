@@ -1,31 +1,33 @@
 { config, pkgs, inputs, ... }: {
+  imports = [ inputs.hypridle.homeManagerModules.default ];
+
   config = {
-    home.packages = [ inputs.hypridle.packages."x86_64-linux".hypridle ];
-    xdg.configFile."hypridle.conf" = {
+    services.hypridle = {
       enable = true;
-      target = "hypr/hypridle.conf";
-      text = ''
-        general {
-          lock_cmd = hyprlock
-	}
+      lockCmd = "pidof ${pkgs.hyprlock} || ${pkgs.hyprlock}";
+      beforeSleepCmd = "${pkgs.systemd}/bin/loginctl lock-session";
+      afterSleepCmd = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
 
-        listener {
-          timeout = 300 # 5 min
-	  on-timeout = hyprlock
-	  on-resume = notify-send "Unlocked!"
+      listeners = [
+        {
+	  timeout = 200; # 3,3 minutes
+	  onTimeout = "${pkgs.brightnessctl}/bin/brightnessctl -s set 10";
+	  onResume = "${pkgs.brightnessctl}/bin/brightnessctl -r";
 	}
-
-	listener {
-          timeout = 350 # 5.5 min
-	  on-timeout = hyprctl dispatch dpms off # screen off
-	  on-resume = hyprctl dispatch dpms on # screen on
-        }
-
-        listener {
-          timeout = 450 # 7.5 min
-	  on-timeout = systemctl suspend
+	{
+	  timeout = 300; # 5 minutes
+	  onTimeout = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
+	  onResume = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
 	}
-      '';
+	{
+	  timeout = 540; # 9 minutes
+	  onTimeout = "${pkgs.systemd}/bin/loginctl lock-session";
+	}
+	{
+	  timeout = 1800; # 30 minutes
+	  onTimeout = "${pkgs.systemd}/bin/systemctl suspend";
+	}
+      ];
     };
   };
 }

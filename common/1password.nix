@@ -1,10 +1,9 @@
-{ config, pkgs, ... }:
-{
-  programs._1password-gui.enable = true;
-  programs._1password-gui.polkitPolicyOwners = ["mew"];
-  programs._1password.enable = true;
+{ config, pkgs, inputs, lib, ... }: {
+  options.services.onepassword.enable = lib.mkEnableOption "onepassword";
 
-  environment.sessionVariables = {
-    SSH_AUTH_SOCK = "~/.1password/agent.sock";
+  config = lib.mkIf (config.services.onepassword.enable) {
+    programs._1password-gui.enable = lib.mkDefault true;
+    programs._1password-gui.polkitPolicyOwners = lib.mkDefault [ "mew" ];
+    programs._1password.enable = lib.mkDefault true;
   };
 }

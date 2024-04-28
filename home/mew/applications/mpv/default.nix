@@ -1,4 +1,6 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }: let
+  homeDir = "${config.home.homeDirectory}";
+in {
   programs.mpv = {
     enable = true;
     
@@ -19,7 +21,7 @@
 
       # Unbinds keys
       e = "ignore";
-      ENTER = "ignore";
+      ENTER = "cycle pause";
 
       # misc
       "Shift+ESC" = "quit";
@@ -124,6 +126,7 @@
       webtorrent-mpv-hook
       blacklistExtensions
       (pkgs.callPackage ./memo.nix { inherit buildLua; })
+      (pkgs.callPackage ./evafast.nix { inherit buildLua; })
     ];
     scriptOpts = {
       blacklist_extensions = {
@@ -152,7 +155,7 @@
 	disable_elements = "volume, pause_indicator, speed";
       };
       webtorrent = {
-        path = "/tmp";
+        path = "${homeDir}/Videos/webtorrent";
       };
     };
 
@@ -176,9 +179,16 @@
       "extension.jpeg" = {
         profile = "extension.gif";
       };
+      "extension.webp" = {
+        profile = "extension.gif";
+      };
+      "extension.jxl" = {
+        profile = "extension.gif";
+      };
       
       "extension.opus" = {
         save-position-on-quit = false;
+	no-resume-playback = "";
       };
       "extension.mp3" = {
         profile = "extension.opus";

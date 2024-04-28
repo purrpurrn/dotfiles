@@ -1,68 +1,60 @@
+# Do not modify! This file is generated.
+
 {
-  description = "personal multi-user nixos config (WIP)";
-
+  description = "amateur nix config";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    stable.url = "github:NixOS/nixpkgs/nixos-23.11";
-    nh.url = "github:viperML/nh";
-
-    nixvim.url = "github:nix-community/nixvim";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs";
-    
-    # command-not-found workaround
-    flake-programs-sqlite.url = "github:wamserma/flake-programs-sqlite";
-    flake-programs-sqlite.inputs.nixpkgs.follows = "nixpkgs";
-
-    hoyoverse.url = "github:ezKEa/aagl-gtk-on-nix";
-    hoyoverse.inputs.nixpkgs.follows = "nixpkgs";
-
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    hyprland.url = "github:hyprwm/hyprland/ae17e900e720430c7848faf1b6e21b5f352c26ca";
-    hyprland.inputs.nixpkgs.follows = "nixpkgs";
-    prism.url = "github:IogaMaster/prism";
-    hyprpicker.url = "github:hyprwm/hyprpicker";
-    hyprland-contrib.url = "github:hyprwm/contrib";
-    hyprlock.url = "github:hyprwm/hyprlock";
-    hyprlock.inputs.nixpkgs.follows = "nixpkgs";
-    hypridle.url = "github:hyprwm/hypridle";
-    hyprcursor.url = "github:hyprwm/hyprcursor/1a1fcfb58db580f32a5e1ac1963b78c2cc1379e3";
-    hyprcursor.inputs.nixpkgs.follows = "nixpkgs";
-
-    nix-colors.url = "github:misterio77/nix-colors";
-
-    split-monitor-workspaces.url = "github:Duckonaut/split-monitor-workspaces";
-
-    impermanence.url = "github:nix-community/impermanence";
-    agenix.url = "github:ryantm/agenix";
-    bubblewrapper.url = "git+https://git.sr.ht/~cid-chan/bubblewrapper?ref=main";
-    schizofox.url = "github:schizofox/schizofox";
-
     ags.url = "github:aylur/ags";
+    flake-programs-sqlite = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:wamserma/flake-programs-sqlite";
+    };
+    flakegen.url = "github:jorsn/flakegen";
+    hardware.url = "github:NixOS/nixos-hardware";
+    home-manager = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager";
+    };
+    hyprcursor = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:hyprwm/hyprcursor";
+    };
+    hypridle = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:hyprwm/hypridle";
+    };
+    hyprland = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:hyprwm/hyprland/e87227e00ae350adebafd2adde95a47e1f68cb3a";
+    };
+    hyprlock = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:hyprwm/hyprlock";
+    };
+    hyprpicker = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:hyprwm/hyprpicker";
+    };
+    impermanence.url = "github:nix-community/impermanence";
     matugen.url = "github:InioX/matugen";
-  };
-
-  outputs = inputs@{ self, nixpkgs, home-manager, hyprpicker, hyprland-contrib, impermanence, split-monitor-workspaces, ... }: let
-    system = "x86_64-linux";
-  in
-  {
-    nixosConfigurations = {
-      # personal laptop
-      nos = nixpkgs.lib.nixosSystem {
-        modules = [ 
-	  ./hosts/nos 
-	  ./home/users.nix
-	];
-        specialArgs = { inherit inputs; };
-      };
+    niri.url = "github:sodiboo/niri-flake";
+    nix-colors.url = "github:misterio77/nix-colors";
+    nix-darwin = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:LnL7/nix-darwin";
     };
-    homeConfigurations = {
-      "mew@nos" = home-manager.lib.homeManagerConfiguration { 
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = [ ./home/mew/default.nix ];
-	extraSpecialArgs = { inherit inputs; };
-      };
+    nixlib.url = "github:nix-community/nixpkgs.lib";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixvim = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/nixvim";
     };
+    prism.url = "github:IogaMaster/prism";
+    schizofox.url = "github:schizofox/schizofox";
   };
+  nixConfig = {
+    substituters = [ "https://cache.nixos.org" "https://nix-community.cachix.org" "https://hyprland.cachix.org" ];
+    trusted-public-keys = [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+    trusted-users = [ "root" "@wheel" ];
+  };
+  outputs = inputs: inputs.flakegen ./flake.in.nix inputs;
 }

@@ -2,7 +2,10 @@
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
     ./noice.nix
-#    ./notify.nix
+    ./cmp.nix
+    ./oil.nix
+    ./telescope.nix
+    ./nvim-colorizer.nix
     ./lualine.nix
   ];
   config = {
@@ -12,28 +15,31 @@
       viAlias = true;
       vimAlias = true;
       enableMan = true;
-      keymaps = [
-        {
-          key = "<leader>ff";
-	  action = "<cmd>Telescope find_files<cr>";
-	}
-	{
-          key = "<leader>fg";
-	  action = "<cmd>Telescope live_grep<cr>";
-	}
-	{
-          key = "<leader>fb";
-	  action = "<cmd>Telescope buffers<cr>";
-	}
-	{
-          key = "<leader>fh";
-	  action = "<cmd>Telescope help_tags<cr>";
-	}
-      ];
       globals = {
         mapleader = " ";
       };
       colorschemes = {
+        base16 = {
+	  enable = true;
+	  colorscheme = {
+	    base00 = "#${config.colorScheme.palette.base00}";
+	    base01 = "#${config.colorScheme.palette.base01}";
+	    base02 = "#${config.colorScheme.palette.base02}";
+	    base03 = "#${config.colorScheme.palette.base03}";
+	    base04 = "#${config.colorScheme.palette.base04}";
+	    base05 = "#${config.colorScheme.palette.base05}";
+	    base06 = "#${config.colorScheme.palette.base06}";
+	    base07 = "#${config.colorScheme.palette.base07}";
+	    base08 = "#${config.colorScheme.palette.base08}";
+	    base09 = "#${config.colorScheme.palette.base09}";
+	    base0A = "#${config.colorScheme.palette.base0A}";
+	    base0B = "#${config.colorScheme.palette.base0B}";
+	    base0C = "#${config.colorScheme.palette.base0C}";
+	    base0D = "#${config.colorScheme.palette.base0D}";
+	    base0E = "#${config.colorScheme.palette.base0E}";
+	    base0F = "#${config.colorScheme.palette.base0F}";
+	  };
+	};
         rose-pine = {
 	  enable = true;
           transparentBackground = true;
@@ -48,25 +54,9 @@
         signcolumn = "no";
       };
       plugins = {
-        lightline = {
-	  enable = false;
-	  colorscheme = "rosepine";
-	};
-        nvim-colorizer = {
-          enable = true;
-	  userDefaultOptions.mode = "foreground";
-	};
+        cursorline.cursorword.enable = true;
 	treesitter.enable = true;
         trouble.enable = true;
-	telescope = {
-          enable = true;
-	  defaults = {
-            prompt_prefix = " ";
-	    selection_caret = " ";
-	  };
-	};
-	neo-tree.enable = false;
-	oil.enable = true;
 	luasnip.enable = true;
 	image.enable = true;
 	vimtex.enable = true;
@@ -77,18 +67,8 @@
 	    nil_ls.enable = true; # nix programming language
 	  };
 	};
-	nvim-cmp = {
-          enable = true;
-#	  autoEnableSources = true;
-#	  sources = [
-#            { name = "nvim_lsp"; }
-#	    { name = "path"; }
-#	    { name = "buffer"; }
-#	  ];
-	};
       };
       extraPlugins = with pkgs.vimPlugins; [
-	#base16-nvim
         nvim-web-devicons
 	twilight-nvim
 	neoscroll-nvim

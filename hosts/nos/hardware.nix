@@ -4,15 +4,32 @@
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [ "kvm-amd" "ddcci-driver-linux" ];
   boot.kernelPackages = pkgs.linuxPackages; # Kernel
-  # Audio
-  boot.extraModprobeConfig = ''
-    options snd-hda-intel patch=hda-jack-retask.fw
-  ''; 
-  hardware.firmware = [
-    (pkgs.callPackage ./audio {})
-  ];
+
+  # Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
+  # Sound/Speaker Settings
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    wireplumber.enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
+  # Swap
+  swapDevices = [{
+    device = "/dev/nvme0n1p5";
+    randomEncryption.enable = true;
+  }];
+
+  nixpkgs.hostPlatform = "x86_64-linux";
 
   # impermanence 
   fileSystems."/" =
@@ -57,43 +74,9 @@
       fsType = "none";
       options = [ "bind" ];
     };
-
-  # Bluetooth
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-  };
-
-  # Sound/Speaker Settings
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    wireplumber.enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
-  # Swap
-  swapDevices = [{
-    device = "/dev/nvme0n1p5";
-    randomEncryption.enable = true;
-  }];
-
-  # vulkan fix
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-    extraPackages = [
-      pkgs.vulkan-loader
-      pkgs.vulkan-validation-layers
-      pkgs.vulkan-extension-layer
-    ];
-  };
-
-  networking.useDHCP = lib.mkDefault true;
-
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  fileSystems."/var/lib/syncthing" =
+    { device = "/home/mew/tests";
+      fsType = "none";
+      options = [ "bind" ];
+    };
 }
