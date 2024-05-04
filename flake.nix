@@ -50,6 +50,7 @@
     };
     prism.url = "github:IogaMaster/prism";
     schizofox.url = "github:schizofox/schizofox";
+    vesktop.url = "github:NixOS/nixpkgs/5607766da72127e8daa6bc58edddf8e4b9506986";
   };
   nixConfig = {
     substituters = [ "https://cache.nixos.org" "https://nix-community.cachix.org" "https://hyprland.cachix.org" ];

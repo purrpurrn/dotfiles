@@ -1,7 +1,9 @@
-{ config, pkgs, inputs, ... }: {
+{ config, pkgs, inputs, lib, ... }: {
   imports = [ inputs.niri.homeModules.niri ];
 
-  config = {
+  options.niri.enable = lib.mkEnableOption "niri";
+
+  config = lib.mkIf (config.niri.enable) {
     programs.niri = {
       enable = true;
       settings = {

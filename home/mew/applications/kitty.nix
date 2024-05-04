@@ -1,5 +1,7 @@
-{ config, pkgs, ... }: {
-  config = {
+{ config, pkgs, lib, ... }: {
+  options.kitty.enable = lib.mkEnableOption "kitty";
+
+  config = lib.mkIf (config.kitty.enable) {
     programs.kitty = {
       enable = true;
       shellIntegration = {

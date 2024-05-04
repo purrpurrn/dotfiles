@@ -4,33 +4,29 @@
     ./mail.nix
     ./base16.nix
     ./directories.nix
-    ./applications/mpv
-    ./applications/prism
-    ./applications/neovim
-    ./applications/discord
-    ./applications/YT_Music
-    ./applications/chromium
-    ./applications/syncthing
-    ./applications/git.nix
-    ./applications/obs.nix
-    ./applications/ags.nix
-    ./applications/fish.nix
-    ./applications/niri.nix
-    ./applications/btop.nix
-    ./applications/kitty.nix
-    ./applications/direnv.nix
-    #./applications/matugen.nix
-    ./applications/nushell.nix
-    ./applications/firefox.nix
-    ./applications/hyprlock.nix
-    ./applications/hypridle.nix
-    ./applications/streamlink.nix
-    ./applications/easyeffects.nix
+    ./applications
   ];
 
   config = {
     # Allows fontconfig to detect fonts installed through `home.packages` and `nix-env`.
     fonts.fontconfig.enable = true;
+
+    neovim.enable = true;
+    git.enable = true;
+    kitty.enable = true;
+    ags.enable = true;
+    btop.enable = true;
+    direnv.enable = true;
+    fish.enable = true;
+    hypridle.enable = true;
+    discord.enable = false;
+    discord.vesktop.enable = true;
+    hyprlock.enable = true;
+    obs.enable = true;
+    streamlink.enable = true;
+    chromium.enable = true;
+    mpv.enable = true;
+    app.prism.enable = true;
 
     home = {
       username = "mew";

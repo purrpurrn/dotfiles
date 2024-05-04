@@ -1,5 +1,7 @@
-{ config, pkgs, ... }: {
-  config = {
+{ config, pkgs, lib, ... }: {
+  options.easyeffects.enable = lib.mkEnableOption "easyeffects";
+  
+  config = lib.mkIf (config.easyeffects.enable) {
     services.easyeffects = {
       enable = true;
       preset = ''

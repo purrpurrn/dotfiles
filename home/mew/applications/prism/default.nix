@@ -1,8 +1,11 @@
-{ config, pkgs, inputs, ... }: {
+{ config, pkgs, inputs, lib, ... }: {
   imports = [
     inputs.prism.homeModules.prism
   ];
-  config = {
+
+  options.app.prism.enable = lib.mkEnableOption "prism";
+ 
+  config = lib.mkIf (config.app.prism.enable) {
     prism = {
       enable = true;
       wallpapers = ./wallpapers;

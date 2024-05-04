@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }: {
+{ config, pkgs, inputs, lib, ... }: {
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
     ./noice.nix
@@ -8,7 +8,10 @@
     ./nvim-colorizer.nix
     ./lualine.nix
   ];
-  config = {
+
+  options.neovim.enable = lib.mkEnableOption "neovim";
+
+  config = lib.mkIf (config.neovim.enable) {
     programs.nixvim = {
       enable = true;
       defaultEditor = true;
@@ -59,6 +62,7 @@
         trouble.enable = true;
 	luasnip.enable = true;
 	image.enable = true;
+	noice.enable = lib.mkForce false;
 	vimtex.enable = true;
 	lsp = {
           enable = true;

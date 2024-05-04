@@ -1,7 +1,9 @@
-{ config, pkgs, inputs, ... }: {
+{ config, pkgs, inputs, lib, ... }: {
   imports = [ inputs.hypridle.homeManagerModules.default ];
 
-  config = {
+  options.hypridle.enable = lib.mkEnableOption "hypridle";
+
+  config = lib.mkIf (config.hypridle.enable) {
     services.hypridle = {
       enable = true;
       lockCmd = "pidof ${pkgs.hyprlock} || ${pkgs.hyprlock}";

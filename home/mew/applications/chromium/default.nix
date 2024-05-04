@@ -1,8 +1,11 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, lib, ... }: {
   imports = [
     ./NativeMessagingHosts.nix
   ];
-  config = {
+
+  options.chromium.enable = lib.mkEnableOption "chromium";
+  
+  config = lib.mkIf (config.chromium.enable) {
     programs.chromium = {
       enable = true;
       commandLineArgs = [

@@ -1,9 +1,11 @@
-{ config, pkgs, inputs, ... }: let 
+{ config, pkgs, inputs, lib, ... }: let 
   font_family = "Noto Sans";
 in {
   imports = [ inputs.hyprlock.homeManagerModules.default ];
+
+  options.hyprlock.enable = lib.mkEnableOption "hyprlock";
   
-  config = {
+  config = lib.mkIf (config.hyprlock.enable) {
     programs.hyprlock = {
       enable = true;
 

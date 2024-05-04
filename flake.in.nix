@@ -7,6 +7,7 @@
     # nixpkgs
     nixlib.url = "github:nix-community/nixpkgs.lib";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    vesktop.url = "github:NixOS/nixpkgs/5607766da72127e8daa6bc58edddf8e4b9506986";
 
     # Required Flake for impermanence.
     impermanence.url = "github:nix-community/impermanence";

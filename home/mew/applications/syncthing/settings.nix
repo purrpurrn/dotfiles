@@ -12,6 +12,7 @@ in {
       overrideFolders = true;
       folders = {
         "KeePass" = {
+	  id = "ksh";
           path = "${homeDir}/data/Documents/KeePass";
           devices = [
             "AsM"
