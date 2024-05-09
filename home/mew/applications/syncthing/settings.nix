@@ -1,7 +1,9 @@
-{ config, pkgs, inputs, ... }: let
+{ config, pkgs, inputs, lib, ... }: let
   homeDir = "${config.home.homeDirectory}";
 in {
-  config = {
+  options.app.syncthing.enable = lib.mkEnableOption "syncthing";
+ 
+  config = lib.mkIf (config.app.syncthing.enable) {
     services.syncthing = {
       reallyEnable = true;
       overrideDevices = true;

@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }: {
-  options.nushell.enable = lib.mkEnableOption "nushell";
+  options.app.nushell.enable = lib.mkEnableOption "nushell";
 
-  config = lib.mkIf (config.nushell.enable) {
+  config = lib.mkIf (config.app.nushell.enable) {
     programs.nushell = {
       enable = true;
     };

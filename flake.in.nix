@@ -20,11 +20,11 @@
     home-manager = (dep "github:nix-community/home-manager");
 
     # hyprland ecosystem.
-    hyprland = (dep "github:hyprwm/hyprland/e87227e00ae350adebafd2adde95a47e1f68cb3a");
-    hyprlock = (dep "github:hyprwm/hyprlock");
-    hypridle = (dep "github:hyprwm/hypridle");
-    hyprcursor = (dep "github:hyprwm/hyprcursor");
-    hyprpicker = (dep "github:hyprwm/hyprpicker");
+    hyprland = (dep "github:hyprwm/hyprland?submodules=1");
+    hyprlock = (dep "github:hyprwm/hyprlock?submodules=1");
+    hypridle = (dep "github:hyprwm/hypridle?submodules=1");
+    hyprcursor = (dep "github:hyprwm/hyprcursor?submodules=1");
+    hyprpicker = (dep "github:hyprwm/hyprpicker?submodules=1");
 
     # misc.
     schizofox.url = "github:schizofox/schizofox";
@@ -35,6 +35,8 @@
     hardware.url = "github:NixOS/nixos-hardware";
     niri.url = "github:sodiboo/niri-flake";
     matugen.url = "github:InioX/matugen";
+    nixpak.url = (dep "github:nixpak/nixpak");
+    cosmic.url = (dep "github:lilyinstarlight/nixos-cosmic");
   };
 
   nixConfig = {
@@ -44,11 +46,13 @@
       "https://cache.nixos.org"
       "https://nix-community.cachix.org"
       "https://hyprland.cachix.org"
+      "https://cosmic.cachix.org"
     ];
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
     ];
   };
 

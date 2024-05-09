@@ -4,6 +4,10 @@
   description = "amateur nix config";
   inputs = {
     ags.url = "github:aylur/ags";
+    cosmic.url = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:lilyinstarlight/nixos-cosmic";
+    };
     flake-programs-sqlite = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:wamserma/flake-programs-sqlite";
@@ -16,23 +20,23 @@
     };
     hyprcursor = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:hyprwm/hyprcursor";
+      url = "github:hyprwm/hyprcursor?submodules=1";
     };
     hypridle = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:hyprwm/hypridle";
+      url = "github:hyprwm/hypridle?submodules=1";
     };
     hyprland = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:hyprwm/hyprland/e87227e00ae350adebafd2adde95a47e1f68cb3a";
+      url = "github:hyprwm/hyprland?submodules=1";
     };
     hyprlock = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:hyprwm/hyprlock";
+      url = "github:hyprwm/hyprlock?submodules=1";
     };
     hyprpicker = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:hyprwm/hyprpicker";
+      url = "github:hyprwm/hyprpicker?submodules=1";
     };
     impermanence.url = "github:nix-community/impermanence";
     matugen.url = "github:InioX/matugen";
@@ -43,6 +47,10 @@
       url = "github:LnL7/nix-darwin";
     };
     nixlib.url = "github:nix-community/nixpkgs.lib";
+    nixpak.url = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nixpak/nixpak";
+    };
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixvim = {
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,8 +61,8 @@
     vesktop.url = "github:NixOS/nixpkgs/5607766da72127e8daa6bc58edddf8e4b9506986";
   };
   nixConfig = {
-    substituters = [ "https://cache.nixos.org" "https://nix-community.cachix.org" "https://hyprland.cachix.org" ];
-    trusted-public-keys = [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+    substituters = [ "https://cache.nixos.org" "https://nix-community.cachix.org" "https://hyprland.cachix.org" "https://cosmic.cachix.org" ];
+    trusted-public-keys = [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
     trusted-users = [ "root" "@wheel" ];
   };
   outputs = inputs: inputs.flakegen ./flake.in.nix inputs;

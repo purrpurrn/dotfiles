@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }: {
-  options.direnv.enable = lib.mkEnableOption "direnv";
+  options.app.direnv.enable = lib.mkEnableOption "direnv";
 
-  config = lib.mkIf (config.direnv.enable) {
+  config = lib.mkIf (config.app.direnv.enable) {
     programs.direnv = {
       enable = true;
       enableBashIntegration = true;

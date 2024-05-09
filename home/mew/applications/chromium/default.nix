@@ -3,9 +3,9 @@
     ./NativeMessagingHosts.nix
   ];
 
-  options.chromium.enable = lib.mkEnableOption "chromium";
+  options.app.chromium.enable = lib.mkEnableOption "chromium";
   
-  config = lib.mkIf (config.chromium.enable) {
+  config = lib.mkIf (config.app.chromium.enable) {
     programs.chromium = {
       enable = true;
       commandLineArgs = [

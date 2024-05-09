@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }: {
-  options.fish.enable = lib.mkEnableOption "fish";
+  options.app.fish.enable = lib.mkEnableOption "fish";
 
-  config = lib.mkIf (config.fish.enable) {
+  config = lib.mkIf (config.app.fish.enable) {
     programs.fish = {
       enable = true;
       interactiveShellInit = ''

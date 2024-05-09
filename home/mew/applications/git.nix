@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }: {
-  options.git.enable = lib.mkEnableOption "git";
+  options.app.git.enable = lib.mkEnableOption "git";
   
-  config = lib.mkIf (config.git.enable) {
+  config = lib.mkIf (config.app.git.enable) {
     programs.git = {
       enable = true;
       userName = "purrpurrn";

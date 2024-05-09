@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }: {
-  options.zsh.enable = lib.mkEnableOption "zsh";
+  options.app.zsh.enable = lib.mkEnableOption "zsh";
   
-  config = lib.mkIf (config.zsh.enable) {
+  config = lib.mkIf (config.app.zsh.enable) {
     programs.zsh = {
       enable = true;
       enableAutosuggestions = true;

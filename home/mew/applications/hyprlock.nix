@@ -3,9 +3,9 @@
 in {
   imports = [ inputs.hyprlock.homeManagerModules.default ];
 
-  options.hyprlock.enable = lib.mkEnableOption "hyprlock";
+  options.app.hyprlock.enable = lib.mkEnableOption "hyprlock";
   
-  config = lib.mkIf (config.hyprlock.enable) {
+  config = lib.mkIf (config.app.hyprlock.enable) {
     programs.hyprlock = {
       enable = true;
 

@@ -9,9 +9,9 @@
     ./lualine.nix
   ];
 
-  options.neovim.enable = lib.mkEnableOption "neovim";
+  options.app.neovim.enable = lib.mkEnableOption "neovim";
 
-  config = lib.mkIf (config.neovim.enable) {
+  config = lib.mkIf (config.app.neovim.enable) {
     programs.nixvim = {
       enable = true;
       defaultEditor = true;

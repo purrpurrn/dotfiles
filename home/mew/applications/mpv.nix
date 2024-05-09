@@ -1,9 +1,9 @@
 { config, pkgs, lib, ... }: let
   homeDir = "${config.home.homeDirectory}";
 in {
-  options.mpv.enable = lib.mkEnableOption "mpv";
+  options.app.mpv.enable = lib.mkEnableOption "mpv";
   
-  config = lib.mkIf (config.mpv.enable) {
+  config = lib.mkIf (config.app.mpv.enable) {
     programs.mpv = {
       enable = true;
     
@@ -129,7 +129,7 @@ in {
         webtorrent-mpv-hook
         blacklistExtensions
 	memo
-        (pkgs.callPackage ./evafast.nix { inherit buildLua; })
+	evafast
       ];
       scriptOpts = {
         blacklist_extensions = {

@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }: {
-  options.btop.enable = lib.mkEnableOption "btop";
+  options.app.btop.enable = lib.mkEnableOption "btop";
  
-  config = lib.mkIf (config.btop.enable) {
+  config = lib.mkIf (config.app.btop.enable) {
     programs.btop = {
       enable = true;
       settings = {
