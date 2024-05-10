@@ -8,6 +8,7 @@
     ../../common/polkit.nix
     ../../common/gtk.nix
     ../../common/hyprland.nix
+#    ../../common/cosmic.nix
     ../../common/kdeconnect.nix
     ../../common/v4l2loopback.nix
     inputs.flake-programs-sqlite.nixosModules.programs-sqlite # command-not-found workaround

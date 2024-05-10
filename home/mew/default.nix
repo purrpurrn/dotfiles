@@ -21,7 +21,6 @@
 #    app.hyperidle.enable = true;
     app.discord.vesktop.enable = true;
     app.hyprlock.enable = true;
-    app.obs.enable = true;
     app.streamlink.enable = true;
     app.chromium.enable = true;
     app.mpv.enable = true;

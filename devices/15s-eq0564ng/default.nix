@@ -23,8 +23,6 @@
 
   systemd.services.NetworkManager-wait-online.enable = false; # reduces boot time
 
-  services.tlp.enable = lib.mkDefault true;
-
   # Some applications error out if vulkan-loader is not installed e.g vulkaninfo
   hardware.opengl.extraPackages = [
     pkgs.vulkan-loader
