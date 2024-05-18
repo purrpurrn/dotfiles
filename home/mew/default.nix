@@ -18,12 +18,13 @@
     app.btop.enable = true;
     app.direnv.enable = true;
     app.fish.enable = true;
-#    app.hyperidle.enable = true;
+#    app.hyperidle.enabled = true;
     app.discord.vesktop.enable = true;
-    app.hyprlock.enable = true;
+#    app.hyprlock.enabled = false;
     app.streamlink.enable = true;
     app.chromium.enable = true;
     app.mpv.enable = true;
+    app.mpv.ff2mpv.browsers.chromium.enable = true;
     app.prism.enable = true;
     app.syncthing.enable = true;
 
@@ -56,7 +57,6 @@
 	pkgs.libnotify
         pkgs.heroic
         pkgs.swaybg
-        pkgs.ff2mpv
         pkgs.blender
         pkgs.wl-clipboard
 	pkgs.pulseaudio
@@ -104,13 +104,9 @@
         "text/plain" = [ "nvim.desktop" ];
 	"text/markdown" = [ "nvim.desktop" ];
 	"application/pdf" = [ "chromium-browser.desktop" ];
-	"image/*" = [ "mpv.desktop" ];
-	"video/*" = [ "mpv.desktop" ];
-	"audio/*" = [ "mpv.desktop" ];
 	"application/x-apkg" = [ "anki.desktop" ];
 	"application/x-anki" = [ "anki.desktop" ];
 	"application/x-ankiaddon" = [ "anki.desktop" ];
-	"x-scheme-handler/magnet" = [ "mpv.desktop" ];
       };
     };
   };

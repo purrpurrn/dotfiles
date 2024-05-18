@@ -5,7 +5,7 @@
   config = {
     users.mutableUsers = false;
 
-    environment.persistence."/nix/persist" = {
+    environment.persistence."/persist" = {
       hideMounts = true; # hides whitelisted directories and files from commmands like "lsblk".
       directories = [
         "/etc/nixos"

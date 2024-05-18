@@ -1,8 +1,4 @@
 { config, pkgs, lib, ... }: {
-  imports = [
-    ./NativeMessagingHosts.nix
-  ];
-
   options.app.chromium.enable = lib.mkEnableOption "chromium";
   
   config = lib.mkIf (config.app.chromium.enable) {
@@ -25,7 +21,6 @@
 	"edibdbjcniadpccecjdfdjjppcpchdlm" # I still don't care about cookies
 	"kbmfpngjjgdllneeigpgjifpgocmfgmb" # Reddit Enhancement Suite
 	"khncfooichmfjbepaaaebmommgaepoid" # Unhook - Remove YouTube Recommended Videos
-	"ephjcajbkgplkjmelpglennepbpmdpjg" # ff2mpv
 	"dbgeolnmmjmhcfndmmahnpicpmnpibep" # FF: Fuzzy finder for Chrome tabs and windows
       ];
     };

@@ -19,11 +19,11 @@
     home-manager = (dep "github:nix-community/home-manager");
 
     # hyprland ecosystem.
-    hyprland = (dep "github:hyprwm/hyprland?submodules=1");
-    hyprlock = (dep "github:hyprwm/hyprlock?submodules=1");
-    hypridle = (dep "github:hyprwm/hypridle?submodules=1");
-    hyprcursor = (dep "github:hyprwm/hyprcursor?submodules=1");
-    hyprpicker = (dep "github:hyprwm/hyprpicker?submodules=1");
+    hyprland = (dep "git+https://github.com/hyprwm/hyprland?submodules=1");
+    hyprlock = (dep "git+https://github.com/hyprwm/hyprlock?submodules=1");
+    hypridle = (dep "git+https://github.com/hyprwm/hypridle?submodules=1");
+    hyprcursor = (dep "git+https://github.com/hyprwm/hyprcursor?submodules=1");
+    hyprpicker = (dep "git+https://github.com/hyprwm/hyprpicker?submodules=1");
 
     # misc.
     schizofox.url = "github:schizofox/schizofox";

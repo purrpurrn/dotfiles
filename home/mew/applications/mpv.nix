@@ -2,8 +2,45 @@
   homeDir = "${config.home.homeDirectory}";
 in {
   options.app.mpv.enable = lib.mkEnableOption "mpv";
+  options.app.mpv.ff2mpv.browsers.chromium.enable = lib.mkEnableOption "mpv.ff2mpv";
   
   config = lib.mkIf (config.app.mpv.enable) {
+    # ff2mpv config
+    home.packages = with pkgs; lib.mkIf (config.app.mpv.ff2mpv.browsers.chromium.enable) [
+      ff2mpv-rust  
+    ];
+
+    # chromium variant
+    programs.chromium.extensions = lib.mkIf (config.app.mpv.ff2mpv.browsers.chromium.enable) [
+      "ephjcajbkgplkjmelpglennepbpmdpjg" # ff2mpv
+    ];
+
+    xdg.configFile."ff2mpv-chromium.json" = lib.mkIf (config.app.mpv.ff2mpv.browsers.chromium.enable) {
+      enable = true;
+      target = "chromium/NativeMessagingHosts/ff2mpv.json";
+      text = ''
+        {
+          "name": "ff2mpv",
+	  "description": "ff2mpv's external manifest",
+	  "path": "${pkgs.ff2mpv-rust}/bin/ff2mpv-rust",
+	  "type": "stdio",
+	  "allowed_origins": [
+	     "chrome-extension://ephjcajbkgplkjmelpglennepbpmdpjg/"
+	  ]
+	}
+      '';
+    }; 
+
+    xdg.mimeApps = {
+      enable = lib.mkDefault true;
+      defaultApplications = {
+        "x-scheme-handler/magnet" = [ "mpv.desktop" ];
+        "image/*" = [ "mpv.desktop" ];
+        "video/*" = [ "mpv.desktop" ];
+        "audio/*" = [ "mpv.desktop" ];
+      };
+    };
+
     programs.mpv = {
       enable = true;
     
@@ -131,6 +168,7 @@ in {
 	memo
 	evafast
       ];
+
       scriptOpts = {
         blacklist_extensions = {
           blacklist = "png, jpg, jpeg, heic";
