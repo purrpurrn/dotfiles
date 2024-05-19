@@ -21,6 +21,8 @@
     pkgs.rtw88-firmware
   ];
 
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
   systemd.services.NetworkManager-wait-online.enable = false; # reduces boot time
 
   # Some applications error out if vulkan-loader is not installed e.g vulkaninfo
