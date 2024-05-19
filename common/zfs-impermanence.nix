@@ -8,6 +8,9 @@
         package = pkgs.zfs_unstable;
         requestEncryptionCredentials = true;
       };
+      initrd.postDeviceCommands = lib.mkAfter ''
+        zfs rollback -r rpool/local/root@blank
+      '';
     };
 
       services.zfs = {
