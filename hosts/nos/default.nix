@@ -1,6 +1,7 @@
 { config, pkgs, inputs, lib, ...}: {
   imports = [
     ./persistence.nix
+    ./hardware.nix
     ../../common/zfs-impermanence.nix
     ../../common/steam.nix
     ../../common/VM.nix
