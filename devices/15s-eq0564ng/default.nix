@@ -21,6 +21,8 @@
     pkgs.rtw88-firmware
   ];
 
+  networking.hostId = "8425e349";
+
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   systemd.services.NetworkManager-wait-online.enable = false; # reduces boot time
