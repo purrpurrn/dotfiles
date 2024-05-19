@@ -11,7 +11,6 @@
         "/etc/nixos"
 	"/etc/NetworkManager/system-connections"
 	"/var/lib/waydroid"
-	"/tmp"
       ];
       files = [
         "/etc/machine-id"
