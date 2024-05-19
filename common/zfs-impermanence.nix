@@ -1,13 +1,14 @@
 { config, pkgs, lib, inputs, ... }: {
   config = {
     boot = {
-      supportFilesystem = [ "zfs" ];
+      supportedFilesystems = [ "zfs" ];
       kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
       zfs = {
 	forceImportRoot = false;
         package = pkgs.zfs_unstable;
         requestEncryptionCredentials = true;
       };
+    };
 
       services.zfs = {
         trim.enable = true;
@@ -15,10 +16,7 @@
       };
 
       # Swap
-      swapDevices = [{ 
-        device = "/dev/disk/by-label/SWAP"; 
-        randomEncryption.enable = true;
-      }];
+      swapDevices = [{ device = "/dev/disk/by-label/SWAP"; }];
   
       # Generic ZFS impermanence filesystem layout
       fileSystems = {
@@ -54,5 +52,4 @@
         };
       };
     };
-  };
 }
