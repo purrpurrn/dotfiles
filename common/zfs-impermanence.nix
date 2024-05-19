@@ -43,7 +43,7 @@
 
         # ZFS Datasets - `/tmp` — NixOS uses `/tmp` to build artifacts, I don't wanna allocate lots of RAM to temporarily store those.
 	"/tmp" = {
-	  device = "zroot/temp";
+	  device = "zroot/tmp";
 	  fsType = "zfs";
 	};
 
