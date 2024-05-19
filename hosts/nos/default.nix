@@ -1,7 +1,7 @@
 { config, pkgs, inputs, lib, ...}: {
   imports = [
-    ./hardware.nix
     ./persistence.nix
+    ../../common/zsh-impermanence.nix
     ../../common/steam.nix
     ../../common/VM.nix
     ../../common/1password.nix

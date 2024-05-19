@@ -11,6 +11,7 @@
         "/etc/nixos"
 	"/etc/NetworkManager/system-connections"
 	"/var/lib/waydroid"
+	"/tmp"
       ];
       files = [
         "/etc/machine-id"
@@ -38,13 +39,11 @@
 	  "data/Pictures/memes"
 	  "data/Pictures/screenshots"
 	  "data/Pictures/other"
-	  "data/music"
-	  "data/recordings"
+	  "data/Music"
 	  "data/Games/OMORI"
 	  "data/Games/The Song of Saya"
 	  "data/Games/Heroic"
 	  "data/Documents"
-	  "data/Documents/cooklang"
 	  "data/Videos/Replays"
 	  "data/Videos/Captures"
 	  "data/Videos/mpv_clips"

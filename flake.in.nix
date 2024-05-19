@@ -39,9 +39,9 @@
   };
 
   nixConfig = {
-    trusted-users = [ "mew" ];
+    trusted-users = [ "root" ];
 
-    extra-substituters = [
+    extra-trusted-substituters = [
       "https://nix-community.cachix.org"
       "https://hyprland.cachix.org"
       "https://cosmic.cachix.org"

@@ -23,6 +23,7 @@
 #    app.hyprlock.enabled = false;
     app.streamlink.enable = true;
     app.chromium.enable = true;
+    app.firefox.enable = true;
     app.mpv.enable = true;
     app.mpv.ff2mpv.browsers.chromium.enable = true;
     app.prism.enable = true;
