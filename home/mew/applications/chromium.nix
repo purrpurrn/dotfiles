@@ -24,5 +24,9 @@
 	"dbgeolnmmjmhcfndmmahnpicpmnpibep" # FF: Fuzzy finder for Chrome tabs and windows
       ];
     };
+
+    xdg.mimeApps.defaultApplications = {
+      "application/pdf" = [ "chromium-browser.desktop" ];
+    };
   };
 }

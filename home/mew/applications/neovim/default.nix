@@ -45,10 +45,9 @@
 	};
         rose-pine = {
 	  enable = true;
-          transparentBackground = true;
 	};
       };
-      options = {
+      opts = {
         number = true;
 	relativenumber = true;
         clipboard = "unnamedplus";

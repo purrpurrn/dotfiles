@@ -35,7 +35,7 @@
  
      services.printing.enable = true; # enables printing
  
-     system.stateVersion = "23.05";
+     system.stateVersion = "24.05";
      nix.settings.experimental-features = [ "nix-command" "flakes" ]; # enables flakes
 
      # Allows Unfree/Proprietary packages

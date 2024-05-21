@@ -6,7 +6,7 @@
     home = {
       username = "Guest";
       homeDirectory = "/home/guest";
-      stateVersion = "23.05";
+      stateVersion = "24.05";
       
       packages = [
 	pkgs.gpu-screen-recorder

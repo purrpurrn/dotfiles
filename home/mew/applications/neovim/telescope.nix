@@ -1,10 +1,14 @@
 { config, pkgs, inputs, ... }: {
   config = {
+    programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
+      telescope-zoxide
+    ];
+
     programs.nixvim.plugins.telescope = {
       enable = true;
       extensions.fzy-native.enable = true;
       extensions.frecency.enable = true;
-      defaults = {
+      settings.defaults = {
         prompt_prefix = " ";
         selection_caret = " ";
       };

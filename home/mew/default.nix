@@ -18,6 +18,7 @@
     app.btop.enable = true;
     app.direnv.enable = true;
     app.fish.enable = true;
+    app.zoxide.enable = true;
 #    app.hyperidle.enabled = true;
     app.discord.vesktop.enable = true;
 #    app.hyprlock.enabled = false;
@@ -32,62 +33,65 @@
     home = {
       username = "mew";
       homeDirectory = "/home/mew";
-      stateVersion = "23.05";
+      stateVersion = "24.05";
       sessionVariables = {
         EDITOR = "nvim";
       };
-      
-      packages = [
-        inputs.hyprpicker.packages."x86_64-linux".hyprpicker
-	inputs.hyprcursor.packages."x86_64-linux".hyprcursor
-	(pkgs.prismlauncher.override { jdks = [ pkgs.temurin-bin-21 pkgs.temurin-bin-8 pkgs.temurin-bin-17 ]; withWaylandGLFW = true; })
-	(pkgs.callPackage ../../common/pomo.nix {})
-	pkgs.ncdu
-        pkgs.unp
-	pkgs.gpu-screen-recorder
-	pkgs.gpu-screen-recorder-gtk
-	pkgs.devenv
-        pkgs.ffmpeg-full
-        pkgs.jq
-        pkgs.fd
-        pkgs.ripgrep
-	pkgs.tree
-	pkgs.p7zip
-	pkgs.unar
-	pkgs.pciutils
-	pkgs.libnotify
-        pkgs.heroic
-        pkgs.swaybg
-        pkgs.blender
-        pkgs.wl-clipboard
-	pkgs.pulseaudio
-	pkgs.krita
-	pkgs.kitty
-	pkgs.steamguard-cli
-	pkgs.fzy
-	pkgs.rofi-wayland
-	pkgs.obsidian
-	pkgs.scrcpy
-	pkgs.anki
-	pkgs.azpainter
-	# Process Managers - CLI
-	pkgs.htop
-	pkgs.killall
-	# Process Managers - GUI
-	pkgs.mission-center
-	# Fonts
-	pkgs.nerdfonts
-        pkgs.helvetica-neue-lt-std
-        pkgs.vistafonts
-	pkgs.corefonts
-	pkgs.google-fonts
-	# misc
-	pkgs.brightnessctl # misc - backlight management.
-	pkgs.neofetch # misc - system info.
-	pkgs.yt-dlp # misc - online video downloader.
-	pkgs.keepassxc # misc - Offline password manager with many features.
-      ];
     };
+      
+    home.packages = [
+      inputs.hyprpicker.packages."x86_64-linux".hyprpicker
+      inputs.hyprcursor.packages."x86_64-linux".hyprcursor
+      (pkgs.prismlauncher.override { jdks = [ pkgs.temurin-bin-21 pkgs.temurin-bin-8 pkgs.temurin-bin-17 ]; withWaylandGLFW = true; })
+      (pkgs.callPackage ../../common/pomo.nix {})
+      pkgs.ncdu
+      pkgs.unp
+      pkgs.devenv
+      pkgs.jq
+      pkgs.fd
+      pkgs.ripgrep
+      pkgs.tree
+      pkgs.p7zip
+      pkgs.unar
+      pkgs.pciutils
+      pkgs.libnotify
+      pkgs.heroic
+      pkgs.swaybg
+      pkgs.blender
+      pkgs.steamguard-cli
+      pkgs.fzy
+      pkgs.rofi-wayland
+      pkgs.obsidian
+      pkgs.scrcpy
+      pkgs.anki
+      # Screen Recorders
+      pkgs.gpu-screen-recorder
+      pkgs.gpu-screen-recorder-gtk
+      pkgs.obs-studio
+      pkgs.ffmpeg-full # Video Editing
+      # Drawing & Photo Editing
+      pkgs.azpainter
+      pkgs.krita
+      # Process Managers - CLI
+      pkgs.htop
+      pkgs.killall
+      # Process Managers - GUI
+      pkgs.mission-center
+      # Clipboard Managment
+      pkgs.wl-clipboard
+      pkgs.cliphist
+      # Fonts
+      pkgs.nerdfonts
+      pkgs.helvetica-neue-lt-std
+      pkgs.vistafonts
+      pkgs.corefonts
+      pkgs.google-fonts
+      # misc
+      pkgs.brightnessctl # backlight management.
+      pkgs.neofetch # system info.
+      pkgs.yt-dlp # misc - online video downloader.
+      pkgs.keepassxc # misc - Offline password manager with many features.
+   ];
 
     xdg.userDirs = {
       enable = true;
@@ -104,7 +108,6 @@
       defaultApplications = {
         "text/plain" = [ "nvim.desktop" ];
 	"text/markdown" = [ "nvim.desktop" ];
-	"application/pdf" = [ "chromium-browser.desktop" ];
 	"application/x-apkg" = [ "anki.desktop" ];
 	"application/x-anki" = [ "anki.desktop" ];
 	"application/x-ankiaddon" = [ "anki.desktop" ];
