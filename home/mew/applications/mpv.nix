@@ -81,7 +81,7 @@ in {
         ">" = "frame-step";
         "<" = "frame-back-step";
       };
-      defaultProfiles = [ "gpu-hq" ];
+      defaultProfiles = [ "high-quality" ];
       config = {
         # General & OSD
         keep-open = true;

@@ -79,6 +79,7 @@
       pkgs.mission-center
       # Clipboard Managment
       pkgs.wl-clipboard
+      pkgs.wl-clipboard-x11
       pkgs.cliphist
       # Fonts
       pkgs.nerdfonts
