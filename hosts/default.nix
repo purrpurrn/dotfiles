@@ -5,9 +5,9 @@ in {
   nos = lib.nixosSystem {
     system = "x86_64-linux";
     modules = [ 
-      ./hosts/nos 
-      ./devices/15s-eq0564ng
-      ./home/users.nix
+      ./nos 
+      ../devices/15s-eq0564ng
+      ../home/users.nix
     ];
     specialArgs = { inherit lib inputs self; };
   };
