@@ -54,16 +54,8 @@
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations = {
-      nos = nixpkgs.lib.nixosSystem {
-        modules = [ 
-	  ./hosts/nos 
-	  ./devices/15s-eq0564ng
-	  ./home/users.nix
-	];
-        specialArgs = { inherit inputs; };
-      };
-    };
-  };
+    inherit (nixpkgs) lib;
 
+    nixosConfigurations = import ./hosts { inherit inputs; };
+  };
 }

@@ -1,11 +1,13 @@
-{ config, inputs, lib, options, ... }: {
+{ config, inputs, lib, ... }: {
   imports = [ inputs.impermanence.nixosModules.impermanence ];
+
+  options.environment.persistence.tmpfs.enable = lib.mkEnableOption "tmpfs";
 
   config = {
     users.mutableUsers = false;
 
     fileSystems = {
-      "/" = lib.mkIf (options.environment.persistence.tmpfs.enable) (
+      "/" = lib.mkIf (config.environment.persistence.tmpfs.enable) (
         lib.mkForce {
 	  device = "tmpfs";
 	  fsType = "tmpfs";
