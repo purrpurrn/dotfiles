@@ -1480,6 +1480,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_9": {
+      "locked": {
+        "lastModified": 1708655239,
+        "narHash": "sha256-ZrP/yACUvDB+zbqYJsln4iwotbH6CTZiTkANJ0AgDv4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "cbc4211f0afffe6dfd2478a62615dd5175a13f9a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixvim": {
       "inputs": {
         "devshell": "devshell_2",
@@ -1612,7 +1628,8 @@
         "nixpkgs": "nixpkgs_6",
         "nixvim": "nixvim",
         "prism": "prism",
-        "schizofox": "schizofox"
+        "schizofox": "schizofox",
+        "wayfreeze": "wayfreeze"
       }
     },
     "schizofox": {
@@ -1928,6 +1945,24 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "wayfreeze": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_9"
+      },
+      "locked": {
+        "lastModified": 1716499022,
+        "narHash": "sha256-b0yVilXvNIpOPlDHte4xIjzQwRMJ9le2xWn+BG3jwBc=",
+        "owner": "jappie3",
+        "repo": "wayfreeze",
+        "rev": "6869d428690e35255007508f3809d6f18ac5b164",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jappie3",
+        "repo": "wayfreeze",
         "type": "github"
       }
     },

@@ -36,6 +36,7 @@
     matugen.url = "github:InioX/matugen";
     nixpak = (dep "github:nixpak/nixpak");
     cosmic = (dep "github:lilyinstarlight/nixos-cosmic");
+    wayfreeze.url = "github:jappie3/wayfreeze";
   };
 
   nixConfig = {

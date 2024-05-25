@@ -1,10 +1,12 @@
 { inputs, config, ... }: {
-  imports = [ inputs.impermanence.nixosModules.impermanence ];
+  imports = [ 
+    inputs.impermanence.nixosModules.impermanence 
+  ];
 
   config = {
     users.mutableUsers = false;
 
-    environment.persistence.tmpfs.enable = true;
+    persistence.tmpfs.enable = true;
 
     environment.persistence."/persist" = {
       hideMounts = true; # hides whitelisted directories and files from commmands like "lsblk".
@@ -32,6 +34,7 @@
           ".local/share/Anki2"
           ".local/state/mpv/watch_later"
           ".local/share/icons"
+	  ".local/share/zoxide"
           ".icons"
           "data/Pictures/memes"
           "data/Pictures/screenshots"
@@ -49,7 +52,6 @@
 	files = [
           ".config/mpv/memo-history.log"
 	  ".config/gpu-screen-recorder/config"
-	  ".local/share/db.zo"
 	];
       };
     };

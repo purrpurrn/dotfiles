@@ -1,4 +1,6 @@
 { config, pkgs, lib, inputs, ... }: {
+  options.persistence.tmpfs.enable = lib.mkEnableOption "tmpfs";
+
   config = {
     boot = {
       supportedFilesystems = [ "zfs" ];
@@ -26,26 +28,38 @@
         fsType = "vfat";
       };
 
-      # tmpfs - root
-      "/" = {
-        device = "zroot/enc/root";
-        fsType = "zfs";
-      };
+      # ZFS Pool or tmpfs - root
+      "/" = if (config.persistence.tmpfs.enable) then (
+        {
+          device = "tmpfs";
+          fsType = "tmpfs";
+          options = [
+            "defaults"
+            "size=2G"
+            "mode=755"
+          ];
+        }
+      ) else (
+        {
+          device = "zroot/enc/root";
+          fsType = "zfs";
+        }
+      );
 
-      # ZFS Datasets - Nix Store
+      # ZFS Pool - Nix Store
       "/nix" = {
         device = "zroot/enc/nix";
         fsType = "zfs";
 	neededForBoot = true;
       };
 
-      # ZFS Datasets - `/tmp` — NixOS uses `/tmp` to build artifacts, I don't wanna allocate lots of RAM to temporarily store those.
+      # ZFS Pool - `/tmp` — NixOS uses `/tmp` to build artifacts, I don't wanna allocate lots of RAM to temporarily store those.
       "/tmp" = {
         device = "zroot/enc/tmp";
         fsType = "zfs";
       };
 
-      # ZFS Datasets - Impermanence
+      # ZFS Pool - Impermanence
       "/persist" = {
         device = "zroot/enc/persist";
         fsType = "zfs";

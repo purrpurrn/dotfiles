@@ -43,7 +43,7 @@
       inputs.hyprpicker.packages."x86_64-linux".hyprpicker
       inputs.hyprcursor.packages."x86_64-linux".hyprcursor
       (pkgs.prismlauncher.override { jdks = [ pkgs.temurin-bin-21 pkgs.temurin-bin-8 pkgs.temurin-bin-17 ]; withWaylandGLFW = true; })
-      (pkgs.callPackage ../../common/pomo.nix {})
+      (pkgs.callPackage ../../common/pomo.nix { })
       pkgs.ncdu
       pkgs.unp
       pkgs.devenv
@@ -69,6 +69,8 @@
       pkgs.gpu-screen-recorder-gtk
       pkgs.obs-studio
       pkgs.ffmpeg-full # Video Editing
+      # Screenshots
+      inputs.wayfreeze.packages.${pkgs.system}.wayfreeze
       # Drawing & Photo Editing
       pkgs.azpainter
       pkgs.krita
@@ -79,7 +81,6 @@
       pkgs.mission-center
       # Clipboard Managment
       pkgs.wl-clipboard
-      pkgs.wl-clipboard-x11
       pkgs.cliphist
       # Fonts
       pkgs.nerdfonts
@@ -87,11 +88,12 @@
       pkgs.vistafonts
       pkgs.corefonts
       pkgs.google-fonts
+      #pkgs.windows11-fonts
       # misc
       pkgs.brightnessctl # backlight management.
       pkgs.neofetch # system info.
-      pkgs.yt-dlp # misc - online video downloader.
-      pkgs.keepassxc # misc - Offline password manager with many features.
+      pkgs.yt-dlp # online video downloader.
+      pkgs.keepassxc # Offline password manager with many features.
    ];
 
     xdg.userDirs = {
