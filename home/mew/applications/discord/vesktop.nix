@@ -8,7 +8,7 @@
           (makeDesktopItem {
             name = "Discord";
             desktopName = "Discord";
-            exec = "${pkgs.vesktop}/bin/vesktop --enable-features=VaapiIgnoreDriverChecks,VaapiVideoEncoder,VaapiVideoDecoder,CanvasOopRasterization,UseMultiPlaneFormatForHardwareVideo,UseOzonePlatform,ozone-platform=wayland %U";
+            exec = "${pkgs.vesktop}/bin/vesktop --enable-features=VaapiIgnoreDriverChecks,VaapiVideoEncoder,VaapiVideoDecoder,CanvasOopRasterization,UseMultiPlaneFormatForHardwareVideo,UseOzonePlatform --ozone-platform=wayland %U";
             icon = "discord";
             genericName = "${pkgs.discord.meta.description}";
             keywords = ["discord" "vencord" "electron" "chat"];

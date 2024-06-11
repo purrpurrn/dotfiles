@@ -38,6 +38,7 @@
       home-manager = {
         extraSpecialArgs = inputs // { inherit inputs; };
         useGlobalPkgs = true;
+        backupFileExtension = "backup";
 
         users = {
           mew = { ... }: {

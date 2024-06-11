@@ -36,7 +36,7 @@
     matugen.url = "github:InioX/matugen";
     nixpak = (dep "github:nixpak/nixpak");
     cosmic = (dep "github:lilyinstarlight/nixos-cosmic");
-    wayfreeze.url = "github:jappie3/wayfreeze";
+    stylix.url = "github:danth/stylix";
   };
 
   nixConfig = {
@@ -54,9 +54,30 @@
     ];
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { 
+    self, 
+    nixpkgs,
+    nixvim,
+    ...
+  } @inputs: let 
+    # A function that provides a system-specific Nixpkgs for the desired systems
+    forAllSystems = f: nixpkgs.lib.genAttrs [ 
+      "x86_64-linux" 
+      "aarch64-linux" 
+      "x86_64-darwin" 
+      "aarch64-darwin" 
+    ] (system: f {
+      pkgs = import nixpkgs { inherit system; };
+    });
+  in {
     inherit (nixpkgs) lib;
 
     nixosConfigurations = import ./hosts { inherit inputs; };
+
+    packages = forAllSystems ({ pkgs }: {
+      mew.nvim = nixvim.legacyPackages."${pkgs.system}".makeNixvimWithModule {
+        module = import ./home/mew/applications/neovim;
+      };
+    });
   };
 }

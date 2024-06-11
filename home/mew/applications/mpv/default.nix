@@ -164,9 +164,11 @@ in {
         autoload
         thumbfast
         webtorrent-mpv-hook
+        #(pkgs.callPackage ./mpv-webtorrent-hook.nix { })
         blacklistExtensions
 	memo
 	evafast
+        #(pkgs.callPackage ./mpv-webtorrent-hook.nix { inherit buildLua; })
       ];
 
       scriptOpts = {
@@ -195,7 +197,7 @@ in {
 	  disable_elements = "volume, pause_indicator, speed";
         };
         webtorrent = {
-          path = "${homeDir}/Videos/webtorrent";
+          path = "/tmp";
         };
       };
 

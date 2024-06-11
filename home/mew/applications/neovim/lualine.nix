@@ -1,6 +1,6 @@
 { config, pkgs, ... }: {
   config = {
-    programs.nixvim.plugins.lualine = {
+    plugins.lualine = {
       enable = true;
       iconsEnabled = true;
       theme = "base16";

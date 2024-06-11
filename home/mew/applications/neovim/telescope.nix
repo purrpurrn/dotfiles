@@ -1,10 +1,10 @@
 { config, pkgs, inputs, ... }: {
   config = {
-    programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
+    extraPlugins = with pkgs.vimPlugins; [
       telescope-zoxide
     ];
 
-    programs.nixvim.plugins.telescope = {
+    plugins.telescope = {
       enable = true;
       extensions.fzy-native.enable = true;
       extensions.frecency.enable = true;
@@ -13,22 +13,27 @@
         selection_caret = " ";
       };
     };
-    programs.nixvim.keymaps = [
+
+    keymaps = [
       {
-        key = "<leader>ff";
+        key = "<leader>f";
         action = "<cmd>Telescope find_files<cr>";
       }
       {
-        key = "<leader>fg";
+        key = "<leader>g";
         action = "<cmd>Telescope live_grep<cr>";
       }
       {
-        key = "<leader>fb";
+        key = "<leader>b";
         action = "<cmd>Telescope buffers<cr>";
       }
       {
-        key = "<leader>fh";
+        key = "<leader>h";
         action = "<cmd>Telescope help_tags<cr>";
+      }
+      {
+        key = "<leader>r";
+	action = "<cmd>Telescope oldfiles<cr>";
       }
     ];
   };

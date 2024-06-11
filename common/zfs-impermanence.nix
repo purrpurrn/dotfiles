@@ -1,10 +1,11 @@
 { config, pkgs, lib, inputs, ... }: {
   options.persistence.tmpfs.enable = lib.mkEnableOption "tmpfs";
+  options.boot.kernel.xanmod.enable = lib.mkEnableOption "xanmod";
 
   config = {
     boot = {
       supportedFilesystems = [ "zfs" ];
-      kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages; # Latest Kernel supported by ZFS
+      kernelPackages = if (config.boot.kernel.xanmod.enable) then pkgs.linuxPackages_xanmod else config.boot.zfs.package.latestCompatibleLinuxPackages; # Xanmod or latest linux kernel with zfs support
       tmp.cleanOnBoot = true; # Clears `/tmp` on boot
       zfs = {
 	forceImportRoot = false;
@@ -26,6 +27,7 @@
       "/boot" = {
         device = "/dev/disk/by-label/NIXBOOT";
         fsType = "vfat";
+	options = [ "umask=0077" ]; # semi-secures `/boot` from being world accessible. source: https://github.com/NixOS/nixpkgs/issues/279362#issuecomment-1913126484 & https://github.com/NixOS/nixpkgs/issues/279362#issuecomment-1913506090
       };
 
       # ZFS Pool or tmpfs - root

@@ -1,9 +1,10 @@
-{ config, pkgs, inputs, ... }: {
+{ config, ... }: {
   config = {
-    programs.nixvim.plugins.oil = {
+    plugins.oil = {
       enable = true;
     };
-    programs.nixvim.keymaps = [
+
+    keymaps = [
       {
         key = "<leader>o";
 	action = "<cmd>Oil<cr>";

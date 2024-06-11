@@ -1,6 +1,5 @@
 { pkgs, config, inputs, ... }: {
   imports = [
-    ./gtk.nix
     ./mail.nix
     ./base16.nix
     ./directories.nix
@@ -8,10 +7,7 @@
   ];
 
   config = {
-    # Allows fontconfig to detect fonts installed through `home.packages` and `nix-env`.
-    fonts.fontconfig.enable = true;
 
-    app.neovim.enable = true;
     app.git.enable = true;
     app.kitty.enable = true;
     app.ags.enable = true;
@@ -34,14 +30,12 @@
       username = "mew";
       homeDirectory = "/home/mew";
       stateVersion = "24.05";
-      sessionVariables = {
-        EDITOR = "nvim";
-      };
     };
-      
+
     home.packages = [
-      inputs.hyprpicker.packages."x86_64-linux".hyprpicker
-      inputs.hyprcursor.packages."x86_64-linux".hyprcursor
+      inputs.hyprpicker.packages."${pkgs.system}".hyprpicker
+      inputs.hyprcursor.packages."${pkgs.system}".hyprcursor
+      inputs.self.packages."${pkgs.system}".mew.nvim
       (pkgs.prismlauncher.override { jdks = [ pkgs.temurin-bin-21 pkgs.temurin-bin-8 pkgs.temurin-bin-17 ]; withWaylandGLFW = true; })
       (pkgs.callPackage ../../common/pomo.nix { })
       pkgs.ncdu
@@ -69,8 +63,6 @@
       pkgs.gpu-screen-recorder-gtk
       pkgs.obs-studio
       pkgs.ffmpeg-full # Video Editing
-      # Screenshots
-      inputs.wayfreeze.packages.${pkgs.system}.wayfreeze
       # Drawing & Photo Editing
       pkgs.azpainter
       pkgs.krita
@@ -82,19 +74,25 @@
       # Clipboard Managment
       pkgs.wl-clipboard
       pkgs.cliphist
-      # Fonts
-      pkgs.nerdfonts
-      pkgs.helvetica-neue-lt-std
-      pkgs.vistafonts
-      pkgs.corefonts
-      pkgs.google-fonts
-      #pkgs.windows11-fonts
+      # External Drive Management
+      pkgs.udiskie
+      pkgs.bashmount
       # misc
       pkgs.brightnessctl # backlight management.
       pkgs.neofetch # system info.
       pkgs.yt-dlp # online video downloader.
       pkgs.keepassxc # Offline password manager with many features.
+      pkgs.rsync # needed for copying
+      # Fonts
+      pkgs.helvetica-neue-lt-std
+      pkgs.vistafonts
+      pkgs.corefonts
+      pkgs.google-fonts
+      #pkgs.windows11-fonts
    ];
+
+    # Allows fontconfig to detect fonts installed through `home.packages` and `nix-env`.
+    fonts.fontconfig.enable = true;
 
     xdg.userDirs = {
       enable = true;
@@ -109,8 +107,6 @@
     xdg.mimeApps = {
       enable = true;
       defaultApplications = {
-        "text/plain" = [ "nvim.desktop" ];
-	"text/markdown" = [ "nvim.desktop" ];
 	"application/x-apkg" = [ "anki.desktop" ];
 	"application/x-anki" = [ "anki.desktop" ];
 	"application/x-ankiaddon" = [ "anki.desktop" ];
