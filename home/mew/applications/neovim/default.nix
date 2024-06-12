@@ -3,6 +3,7 @@
     ./cmp.nix
     ./oil.nix
     ./lsp.nix
+    ./vimtex.nix
     ./lualine.nix
     ./telescope.nix
     ./persistence.nix
@@ -35,7 +36,6 @@
       luasnip.enable = true;
       image.enable = true;
       noice.enable = lib.mkForce false;
-      vimtex.enable = true;
     };
 
     extraPlugins = with pkgs.vimPlugins; [
