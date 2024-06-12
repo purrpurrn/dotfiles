@@ -1,7 +1,6 @@
 { pkgs, config, inputs, ... }: {
   imports = [
     ./mail.nix
-    ./base16.nix
     ./directories.nix
     ./applications
   ];
