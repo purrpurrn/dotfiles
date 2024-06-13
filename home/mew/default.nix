@@ -77,6 +77,7 @@
       pkgs.udiskie
       pkgs.bashmount
       # misc
+      pkgs.texliveFull # LaTeX
       pkgs.brightnessctl # backlight management.
       pkgs.neofetch # system info.
       pkgs.yt-dlp # online video downloader.

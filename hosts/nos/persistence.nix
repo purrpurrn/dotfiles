@@ -35,7 +35,6 @@
           ".local/state/mpv/watch_later"
           ".local/share/icons"
 	  ".local/share/zoxide"
-	  ".local/share/fish/fish_history"
           ".icons"
 	  "data/Pictures"
           "data/Music"
@@ -51,6 +50,7 @@
 	files = [
           ".config/mpv/memo-history.log"
 	  ".config/gpu-screen-recorder/config"
+	  ".local/share/fish/fish_history"
 	];
       };
     };

@@ -1,7 +1,6 @@
 { self, pkgs, lib, ... }: {
   imports = [
    ./mpv
-   ./prism
    ./discord
    ./YT_Music
    ./syncthing
